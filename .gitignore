@@ -1,0 +1,10 @@
+# Visual Studio
+.vs
+
+# Third party
+packages
+
+# Compile folders
+bin
+obj
+libs.bin
