@@ -96,3 +96,155 @@ public static class WebApiConfig
 
 >Reference: https://docs.microsoft.com/es-es/aspnet/web-api/overview/advanced/dependency-injection
 >Reference: https://nodogmablog.bryanhogan.net/2016/04/web-api-2-and-ninject-how-to-make-them-work-together/
+
+* We have used the second link.
+* Because we are using IContainerRepositories, to make the hold thing work we have to get the instances with arguments.
+
+```C# Ninject.Web.Common.cs
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Series.API.web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Series.API.web.App_Start.NinjectWebCommon), "Stop")]
+
+namespace Series.API.web.App_Start
+{
+    using System;
+    using System.Web;
+    using System.Web.Http;
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+    using Ninject;
+    using Ninject.Web.Common;
+    using Ninject.Web.Common.WebHost;
+    using Ninject.Web.WebApi;
+    using Series.Backend.Contracts;
+    using Series.Backend.Models;
+    using Series.Backend.Models.Repositories;
+
+    public static class NinjectWebCommon 
+    {
+        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+
+        /// <summary>
+        /// Starts the application
+        /// </summary>
+        public static void Start() 
+        {
+            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
+            bootstrapper.Initialize(CreateKernel);
+        }
+        
+        /// <summary>
+        /// Stops the application.
+        /// </summary>
+        public static void Stop()
+        {
+            bootstrapper.ShutDown();
+        }
+        
+        /// <summary>
+        /// Creates the kernel that will manage your application.
+        /// </summary>
+        /// <returns>The created kernel.</returns>
+        private static IKernel CreateKernel()
+        {
+            var kernel = new StandardKernel();
+            try
+            {
+                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel); // [1]
+                return kernel;
+            }
+            catch
+            {
+                kernel.Dispose();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Load your modules or register your services here!
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
+        private static void RegisterServices(IKernel kernel)
+        {
+            kernel.Bind<IContainerRepositories>()
+                .To<ContainerRepositories>()
+                .WithConstructorArgument("connectionString", ""); // [2]
+        }        
+    }
+}
+```
+
+1. We have to register it at `GlobalConfiguration` otherwise we got an error. Bear on mind that if we want to pass a connection string we can do at the Web.config file.
+2. Because we do not have default constructor, we have to invoke the constructor with arguments.
+
+### Return JSON format from our API.
+
+>Reference: https://stackoverflow.com/questions/9847564/how-do-i-get-asp-net-web-api-to-return-json-instead-of-xml-using-chrome/20556625#20556625
+>Reference: https://stackoverflow.com/questions/28552567/web-api-2-how-to-return-json-with-camelcased-property-names-on-objects-and-the
+
+* Here we got different goals:
+	1. Return JSON format instead XML for some kind of requests.
+	2. Return camel case format instead of Pascal case.
+
+1. Return JSON format instead XML for some kind of requests.
+
+```C# WebApiConfig.cs
+using System.Net.Http.Headers;
+using System.Web.Http;
+using System.Web.Http.Cors;
+
+namespace Series.API.web
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // Return JSON format for text/html header, instead XML
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            // Web API configuration and services
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
+            // Web API routes
+            config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+        }
+    }
+}
+
+```
+
+2. Return camel case format instead of Pascal case.
+
+```C# Global.asax.cs
+using Newtonsoft.Json.Serialization;
+using System.Web.Http;
+
+namespace Series.API.web
+{
+    public class WebApiApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            // Convert to camel case JSON response 
+            // https://stackoverflow.com/questions/28552567/web-api-2-how-to-return-json-with-camelcased-property-names-on-objects-and-the
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+        }
+    }
+}
+
+```
+
+### Unit Testing
+
+* Install Moq
+* Create isolated example

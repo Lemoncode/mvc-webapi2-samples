@@ -10,7 +10,7 @@ namespace Series.Backend.Models
 
         public ContainerRepositories(string connectionString = null)
         {
-
+            InitializeRepositoryFactories(connectionString);
         }
 
         private void InitializeRepositoryFactories(string connectionString = null)

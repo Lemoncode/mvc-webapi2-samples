@@ -11,7 +11,6 @@ namespace Series.Backend.Models
 
         public SeriesDbContext(): base("series"){}
         
-        // TODO: Host project on GitHub
         // TODO: Create automated build with VSTS
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

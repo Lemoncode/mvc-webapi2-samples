@@ -1,9 +1,4 @@
 ﻿using Series.Backend.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Series.Backend.Models
 {
@@ -14,12 +9,16 @@ namespace Series.Backend.Models
 
         public IContainerRepositories CreateInstance()
         {
-            return null;
+            return _connectionStringSet ?  new ContainerRepositories(_connectionString) : new ContainerRepositories();
         }
 
         public void SetConnectionString(string connectionString)
         {
-            throw new NotImplementedException();
+            if (!string.IsNullOrWhiteSpace(connectionString))
+            {
+                _connectionString = connectionString;
+                _connectionStringSet = true;
+            }
         }
     }
 }

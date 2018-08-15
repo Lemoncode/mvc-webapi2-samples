@@ -5,12 +5,16 @@ namespace Series.API.web.App_Start
 {
     using System;
     using System.Web;
-
+    using System.Web.Http;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using Ninject.Web.WebApi;
+    using Series.Backend.Contracts;
+    using Series.Backend.Models;
+    using Series.Backend.Models.Repositories;
 
     public static class NinjectWebCommon 
     {
@@ -46,6 +50,7 @@ namespace Series.API.web.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch
@@ -61,6 +66,9 @@ namespace Series.API.web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IContainerRepositories>()
+                .To<ContainerRepositories>()
+                .WithConstructorArgument("connectionString", "");
         }        
     }
 }
