@@ -180,6 +180,9 @@ namespace Series.API.web.App_Start
 1. We have to register it at `GlobalConfiguration` otherwise we got an error. Bear on mind that if we want to pass a connection string we can do at the Web.config file.
 2. Because we do not have default constructor, we have to invoke the constructor with arguments.
 
+* For filtering injection have a look at: 
+	- https://stackoverflow.com/questions/6193414/dependency-injection-with-ninject-and-filter-attribute-for-asp-net-mvc
+
 ### Return JSON format from our API.
 
 >Reference: https://stackoverflow.com/questions/9847564/how-do-i-get-asp-net-web-api-to-return-json-instead-of-xml-using-chrome/20556625#20556625
