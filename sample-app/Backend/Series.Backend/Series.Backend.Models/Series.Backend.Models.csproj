@@ -50,9 +50,13 @@
     <Compile Include="ContainerRepositories.cs" />
     <Compile Include="ContainerRepositoriesFactory.cs" />
     <Compile Include="Contexts\SeriesContext.cs" />
+    <Compile Include="Contexts\UserSeriesContext.cs" />
     <Compile Include="ModelConfigurations\GenreConfiguration.cs" />
+    <Compile Include="ModelConfigurations\TVSerieUserConfiguration.cs" />
     <Compile Include="ModelConfigurations\TVSerieConfiguration.cs" />
+    <Compile Include="ModelConfigurations\UserConfiguration.cs" />
     <Compile Include="Repositories\SeriesRepository.cs" />
+    <Compile Include="Repositories\UserSeriesRepository.cs" />
     <Compile Include="SeriesDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeriesDbContextInitializer.cs" />

@@ -1,12 +1,9 @@
 ﻿using Series.Backend.Contracts;
 using Series.Backend.Entities;
 using Series.Backend.Models.Contexts;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Series.Backend.Models.Repositories
 {

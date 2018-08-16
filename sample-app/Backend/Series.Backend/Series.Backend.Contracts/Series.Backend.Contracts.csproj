@@ -43,6 +43,7 @@
     <Compile Include="IContainerRepositories.cs" />
     <Compile Include="IContainerRepositoriesFactory.cs" />
     <Compile Include="ISeriesRepository.cs" />
+    <Compile Include="IUserSeriesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Series.Backend.Entities
 {
@@ -12,6 +13,7 @@ namespace Series.Backend.Entities
 
         // Navigation properties
         public Genre Genre { get; set; }
+        public ICollection<TVSerieUser> TVSerieUserCollection { get; set; }
 
         // Properties
         public string Title { get; set; }

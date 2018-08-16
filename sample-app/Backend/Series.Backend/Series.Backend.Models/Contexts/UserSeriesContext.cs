@@ -4,26 +4,28 @@ using System.Data.Entity;
 
 namespace Series.Backend.Models.Contexts
 {
-    public class SeriesContext : DbContext
+    public class UserSeriesContext : DbContext
     {
-        public DbSet<Genre> Genres { get; set; }
         public DbSet<TVSerie> TVSeries { get; set; }
-
+        public DbSet<TVSerieUser> TVSerieUser { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new GenreConfiguration());
             modelBuilder.Configurations.Add(new TVSerieConfiguration());
+            modelBuilder.Configurations.Add(new TVSerieUserConfiguration());
+            modelBuilder.Configurations.Add(new UserConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
 
-        public SeriesContext() : base("series")
+
+        public UserSeriesContext() : base("series")
         {
             ContextInitialization();
         }
 
-        public SeriesContext(string connString) : base(connString)
+        public UserSeriesContext(string connString) : base(connString)
         {
             ContextInitialization();
         }
@@ -31,7 +33,7 @@ namespace Series.Backend.Models.Contexts
         private void ContextInitialization()
         {
             Configuration.LazyLoadingEnabled = false;
-            Database.SetInitializer<SeriesContext>(null);
+            Database.SetInitializer<UserSeriesContext>(null);
         }
     }
 }
