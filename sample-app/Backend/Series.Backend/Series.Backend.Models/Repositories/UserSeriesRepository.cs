@@ -57,5 +57,20 @@ namespace Series.Backend.Models.Repositories
 
             return userSeries;
         }
+
+        public void AddUserSerie(int userId, int serieId)
+        {
+            var TVSerieUser = _context.TVSerieUser.SingleOrDefault(tvs => tvs.UserId == userId && tvs.TVSerieId == serieId);
+            if (TVSerieUser == null)
+            {
+                var newSerieUser = new TVSerieUser { UserId = userId, TVSerieId = serieId };
+                _context.TVSerieUser.Add(newSerieUser);
+                _context.SaveChanges();
+            }
+            else
+            {
+                // TODO: Throw custom exception
+            }
+        }
     }
 }

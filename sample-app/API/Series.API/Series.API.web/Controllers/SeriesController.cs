@@ -21,6 +21,7 @@ namespace Series.API.web.Controllers
                 .GetSeries()
                 .Select(s => s.Title)
                 .ToList();
+
             return titles;
         }
 

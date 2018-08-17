@@ -15,7 +15,6 @@
 
 * Other placeholder variables in the route template, such as {id}, are mapped to action parameters.
 
-
 ```C#
 public class ProductsController : ApiController
 {
@@ -31,6 +30,18 @@ GET				api/products/4	GetProductById	4
 DELETE			api/products/4	DeleteProduct	4
 POST			api/products	(no match)
 
+* Web API 2 supports a new type of routing, called attribute routing. As the name implies, attribute routing uses attributes to define routes. Attribute routing gives you more control over the URIs in your web API. For example, you can easily create URIs that describe hierarchies of resources.
+
+* The earlier style of routing (convention-based) is fully support
+
+* Why Attribute routing?
+	- One advantage of convention-based routing is that templates are defined in a single place, and the routing rules are applied consistently across all controllers. Unfortunately, convention-based routing makes it hard to support certain URI patterns that are common in RESTful APIs. For example, resources often contain child resources: Customers have orders, movies have actors, books have authors, and so forth. It's natural to create URIs that reflect these relations:
+		- /customers/1/orders
+
+```C#
+[Route("customers/{customerId}/orders")]
+public IEnumerable<Order> GetOrdersByCustomer(int customerId) { ... }
+```
 
 ### CORS notes
 
