@@ -8,6 +8,7 @@ namespace Series.Backend.Contracts
     {
         IEnumerable<TVSerie> GetSeries();
         TVSerie GetSerieById(int id);
+        IEnumerable<Genre> GetGenres();
         // TODO: Add insert serie
         // TODO: Add delete serie
         // TODO: Update serie

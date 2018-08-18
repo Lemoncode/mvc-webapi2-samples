@@ -20,7 +20,7 @@ namespace Series.Backend.Models.Repositories
         {
             _context = new SeriesContext(connString);
         }
-
+        
         public TVSerie GetSerieById(int id)
         {
             return _context.TVSeries
@@ -87,6 +87,29 @@ namespace Series.Backend.Models.Repositories
                             Title = s.Title,
                         }
                     );
+        }
+
+        public IEnumerable<Genre> GetGenres()
+        {
+            return _context.Genres
+                .Select
+                (
+                    g => new
+                    {
+                        g.Id,
+                        g.Description
+                    }
+                )
+                .AsNoTracking()
+                .ToList()
+                .Select
+                (
+                    g => new Genre
+                    {
+                        Id = g.Id,
+                        Description = g.Description,
+                    }
+                );
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Series.API.web.Controllers
                                     {
                                         Id = s.Id,
                                         Complete = s.Complete,
-                                        Following = false,
+                                        Following = true,
                                         Genre = s.Genre.Description,
                                         Title = s.Title,
                                     }
@@ -83,12 +83,19 @@ namespace Series.API.web.Controllers
                     );
         }
 
-        private static IEnumerable<int> SeriesIdsNotFollowByUser(IEnumerable<TVSerie> series, IEnumerable<TVSerie> userSeries)
+        private IEnumerable<int> SeriesIdsNotFollowByUser(IEnumerable<TVSerie> series, IEnumerable<TVSerie> userSeries)
         {
             var seriesIds = series.Select(s => s.Id);
             var userSeriesIds = userSeries.Select(u => u.Id);
             var notFollowingByUserSeriesIds = seriesIds.Except(userSeriesIds);
             return notFollowingByUserSeriesIds;
+        }
+
+        // TODO: Remove from here.
+        [Route("api/series/genres")]
+        public IEnumerable<Genre> GetGenres()
+        {
+            return _containerRepositories.SeriesRepository.GetGenres();
         }
     }
 }
