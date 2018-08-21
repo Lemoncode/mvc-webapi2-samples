@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15276A8D-4A4A-47A5-B8A1-99F480D77629}</ProjectGuid>
+    <ProjectGuid>{4FE62254-EFF9-49C8-9DC4-8C3B6FDEAA9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Series.Backend.Contracts</RootNamespace>
-    <AssemblyName>Series.Backend.Contracts</AssemblyName>
+    <RootNamespace>Security.Utils</RootNamespace>
+    <AssemblyName>Security.Utils</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\libs.bin\</OutputPath>
+    <OutputPath>..\..\libs.bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\libs.bin\</OutputPath>
+    <OutputPath>..\..\libs.bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,18 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IContainerRepositories.cs" />
-    <Compile Include="IContainerRepositoriesFactory.cs" />
-    <Compile Include="ISecurityRepository.cs" />
-    <Compile Include="ISeriesRepository.cs" />
-    <Compile Include="IUserSeriesRepository.cs" />
+    <Compile Include="HashGenerator.cs" />
+    <Compile Include="IHashGenerator.cs" />
+    <Compile Include="ITokenGenerator.cs" />
+    <Compile Include="SaltGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Series.Backend.Entities\Series.Backend.Entities.csproj">
-      <Project>{88c88abd-cc8f-407c-8484-713135b961ec}</Project>
-      <Name>Series.Backend.Entities</Name>
-    </ProjectReference>
+    <Compile Include="TokenGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -49,12 +49,17 @@
   <ItemGroup>
     <Compile Include="ContainerRepositories.cs" />
     <Compile Include="ContainerRepositoriesFactory.cs" />
+    <Compile Include="Contexts\SecurityContext.cs" />
     <Compile Include="Contexts\SeriesContext.cs" />
     <Compile Include="Contexts\UserSeriesContext.cs" />
     <Compile Include="ModelConfigurations\GenreConfiguration.cs" />
+    <Compile Include="ModelConfigurations\RoleConfiguration.cs" />
     <Compile Include="ModelConfigurations\TVSerieUserConfiguration.cs" />
     <Compile Include="ModelConfigurations\TVSerieConfiguration.cs" />
     <Compile Include="ModelConfigurations\UserConfiguration.cs" />
+    <Compile Include="ModelConfigurations\UserProfileConfiguration.cs" />
+    <Compile Include="ModelConfigurations\UserSessionConfiguration.cs" />
+    <Compile Include="Repositories\SecurityRepository.cs" />
     <Compile Include="Repositories\SeriesRepository.cs" />
     <Compile Include="Repositories\UserSeriesRepository.cs" />
     <Compile Include="SeriesDbContext.cs" />

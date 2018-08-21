@@ -1,4 +1,5 @@
-﻿using Series.Backend.Contracts;
+﻿using Series.API.web.Filters;
+using Series.Backend.Contracts;
 using Series.Backend.Entities;
 using Series.RestModels;
 using System;
@@ -17,6 +18,7 @@ namespace Series.API.web.Controllers
             _containerRepositories = containerRepositories;
         }
 
+        [ValidateUser("*")]
         // http://localhost:62608/api/userseries?userId=1
         public IEnumerable<UserSerie> GetUserSeries(int userId)
         {

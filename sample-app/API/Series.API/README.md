@@ -43,6 +43,10 @@ POST			api/products	(no match)
 public IEnumerable<Order> GetOrdersByCustomer(int customerId) { ... }
 ```
 
+### Parameter Binding
+
+>Reference: https://docs.microsoft.com/en-us/aspnet/web-api/overview/formats-and-model-binding/parameter-binding-in-aspnet-web-api
+
 ### CORS notes
 
 >Reference: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
@@ -262,3 +266,11 @@ namespace Series.API.web
 
 * Install Moq
 * Create isolated example
+>Reference: https://justintimecoder.com/useful-skills-with-moq/
+
+### Action filters
+
+>Reference: https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
+>Reference: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-filters
+>Reference: http://www.stefanoricciardi.com/2011/02/04/ninject-mini-tutorial-part-2/
+>Have a watch for implementation: https://stackoverflow.com/questions/6193414/dependency-injection-with-ninject-and-filter-attribute-for-asp-net-mvc/27011327

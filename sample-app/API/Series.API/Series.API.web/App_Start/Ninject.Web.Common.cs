@@ -6,12 +6,17 @@ namespace Series.API.web.App_Start
     using System;
     using System.Web;
     using System.Web.Http;
+    using System.Web.Http.Filters;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
     using Ninject.Web.WebApi;
+    using Ninject.Web.WebApi.FilterBindingSyntax;
+    using Security.Utils;
+    using Security.Validators;
+    using Series.API.web.Filters;
     using Series.Backend.Contracts;
     using Series.Backend.Models;
     using Series.Backend.Models.Repositories;
@@ -69,6 +74,28 @@ namespace Series.API.web.App_Start
             kernel.Bind<IContainerRepositories>()
                 .To<ContainerRepositories>()
                 .WithConstructorArgument("connectionString", "");
+
+            kernel.Bind<ISecurityRepository>()
+                .To<SecurityRepository>();
+
+            kernel.Bind<IHashGenerator>()
+                .To<HashGenerator>();
+
+            kernel.Bind<IContentValidator>()
+                .To<HashValidator>();
+
+            kernel.Bind<ITokenGenerator>()
+                .To<TokenGenerator>();
+
+            kernel.Bind<ILogger>().To<Logger>();
+            kernel.BindHttpFilter<LogFilter>(System.Web.Http.Filters.FilterScope.Controller);
+
+            kernel.BindHttpFilter(
+                    x => new ValidateUserFilter(
+                        x.Inject<ISecurityRepository>(),
+                        x.FromActionAttribute<ValidateUserAttribute>().GetValue(att => att.UserType)),
+                    FilterScope.Action
+                ).WhenActionMethodHas<ValidateUserAttribute>();
         }        
     }
 }

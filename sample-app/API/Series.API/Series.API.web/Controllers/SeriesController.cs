@@ -1,4 +1,5 @@
-﻿using Series.Backend.Contracts;
+﻿using Series.API.web.Filters;
+using Series.Backend.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -14,6 +15,7 @@ namespace Series.API.web.Controllers
             _containerRepositories = containerRepositories;
         }
 
+        [Logger]
         // http://localhost:62608/api/series
         public IEnumerable<string> GetAllSeries()
         {

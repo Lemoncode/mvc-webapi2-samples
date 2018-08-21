@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{15276A8D-4A4A-47A5-B8A1-99F480D77629}</ProjectGuid>
+    <ProjectGuid>{13BE81AD-CD8A-4C0A-B787-4C9002BF4D93}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Series.Backend.Contracts</RootNamespace>
-    <AssemblyName>Series.Backend.Contracts</AssemblyName>
+    <RootNamespace>Security.RestModels</RootNamespace>
+    <AssemblyName>Security.RestModels</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\libs.bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\libs.bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,18 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IContainerRepositories.cs" />
-    <Compile Include="IContainerRepositoriesFactory.cs" />
-    <Compile Include="ISecurityRepository.cs" />
-    <Compile Include="ISeriesRepository.cs" />
-    <Compile Include="IUserSeriesRepository.cs" />
+    <Compile Include="UserCredentials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Series.Backend.Entities\Series.Backend.Entities.csproj">
-      <Project>{88c88abd-cc8f-407c-8484-713135b961ec}</Project>
-      <Name>Series.Backend.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -66,6 +66,12 @@
     <Reference Include="Ninject.Web.WebApi, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.WebApi.3.3.0\lib\net45\Ninject.Web.WebApi.dll</HintPath>
     </Reference>
+    <Reference Include="Security.Utils">
+      <HintPath>..\..\..\libs.bin\Security.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Security.Validators">
+      <HintPath>..\..\..\libs.bin\Security.Validators.dll</HintPath>
+    </Reference>
     <Reference Include="Series.Backend.Contracts">
       <HintPath>..\..\..\libs.bin\Series.Backend.Contracts.dll</HintPath>
     </Reference>
@@ -127,7 +133,14 @@
     <Compile Include="App_Start\Ninject.Web.Common.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SeriesController.cs" />
+    <Compile Include="Controllers\UserAccessController.cs" />
     <Compile Include="Controllers\UserSeriesController.cs" />
+    <Compile Include="Filters\ILogger.cs" />
+    <Compile Include="Filters\LogFilter.cs" />
+    <Compile Include="Filters\Logger.cs" />
+    <Compile Include="Filters\LoggerAttribute.cs" />
+    <Compile Include="Filters\ValidateUserAttribute.cs" />
+    <Compile Include="Filters\ValidateUserFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +160,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Security.RestModels\Security.RestModels.csproj">
+      <Project>{13BE81AD-CD8A-4C0A-B787-4C9002BF4D93}</Project>
+      <Name>Security.RestModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Series.RestModels\Series.RestModels.csproj">
       <Project>{E3EEB6F4-4549-45DA-84B1-1796E2EA6D53}</Project>
       <Name>Series.RestModels</Name>

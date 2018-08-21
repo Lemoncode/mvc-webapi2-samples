@@ -8,6 +8,7 @@ namespace Series.Backend.Models
     {
         private IRepositoryFactory<SeriesRepository> _seriesRepositoryFactory;
         private IRepositoryFactory<UserSeriesRepository> _userSeriesRepositoryFactory;
+        private IRepositoryFactory<SecurityRepository> _securityRepositoryFactory;
 
         public ContainerRepositories(string connectionString = null)
         {
@@ -18,15 +19,18 @@ namespace Series.Backend.Models
         {
             _seriesRepositoryFactory = new RepositoryFactory<SeriesRepository>();
             _userSeriesRepositoryFactory = new RepositoryFactory<UserSeriesRepository>();
+            _securityRepositoryFactory = new RepositoryFactory<SecurityRepository>();
 
             if (!string.IsNullOrWhiteSpace(connectionString))
             {
                 _seriesRepositoryFactory.SetConnectionString(connectionString);
                 _userSeriesRepositoryFactory.SetConnectionString(connectionString);
+                _securityRepositoryFactory.SetConnectionString(connectionString);
             }
         }
 
         public ISeriesRepository SeriesRepository => _seriesRepositoryFactory.CreateInstance();
         public IUserSeriesRepository UserSeriesRepository => _userSeriesRepositoryFactory.CreateInstance();
+        public ISecurityRepository SecurityRepository => _securityRepositoryFactory.CreateInstance();
     }
 }

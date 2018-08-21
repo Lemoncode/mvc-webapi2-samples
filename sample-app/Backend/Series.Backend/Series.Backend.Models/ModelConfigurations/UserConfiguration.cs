@@ -1,4 +1,5 @@
 ﻿using Series.Backend.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Series.Backend.Models.ModelConfigurations
@@ -8,6 +9,9 @@ namespace Series.Backend.Models.ModelConfigurations
         public UserConfiguration()
         {
             ToTable("Users");
+
+            Property(u => u.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             Property(u => u.Name)
                 .HasMaxLength(80);

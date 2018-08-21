@@ -1,4 +1,5 @@
-﻿using Series.Backend.Entities;
+﻿using Security.Utils;
+using Series.Backend.Entities;
 using Series.Backend.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace DatabaseInit
 
             using (var context = new SeriesDbContext())
             {
+                PopulateRoles(context);
+                PopulateUserProfiles(context);
                 PopulateGenres(context);
                 PopulateTVSeries(context);
                 PopulateUsers(context);
@@ -21,6 +24,61 @@ namespace DatabaseInit
 
                 context.SaveChanges();
             }
+        }
+
+        private static void PopulateUserProfiles(SeriesDbContext context)
+        {
+            string password = "HolaMundo1234";
+            var salt = new SaltGenerator().GenerateRandomSalt();
+
+            context.UserProfiles
+                .AddRange
+                (
+                    new List<UserProfile>
+                    {
+                        new UserProfile
+                        {
+                            Id = 1,
+                            FirstName = "Jane",
+                            LastName = "Doe",
+                            Email = "jane.doe@foo.com",
+                            RoleId = 1,
+                            Salt = salt,
+                            PasswordHash = new HashGenerator().SaltedContentHash(password, salt),
+                        },
+                        new UserProfile
+                        {
+                            Id = 2,
+                            FirstName = "Joe",
+                            LastName = "Doe",
+                            Email = "joe.doe@foo.com",
+                            RoleId = 2,
+                            Salt = salt,
+                            PasswordHash = new HashGenerator().SaltedContentHash(password, salt),
+                        },
+                    }
+                );
+        }
+
+        private static void PopulateRoles(SeriesDbContext context)
+        {
+            context.Roles
+                .AddRange
+                (
+                    new List<Role>
+                    {
+                        new Role
+                        {
+                            Id = 1,
+                            Name = "standard",
+                        },
+                        new Role
+                        {
+                            Id = 2,
+                            Name = "admin",
+                        },
+                    }
+                );
         }
 
         private static void PopulateTVSerieUsers(SeriesDbContext context)
@@ -52,24 +110,24 @@ namespace DatabaseInit
         private static void PopulateUsers(SeriesDbContext context)
         {
             context.Users
-                            .AddRange
-                            (
-                                new List<User>
-                                {
-                        new User
+                    .AddRange
+                    (
+                        new List<User>
                         {
-                            Id = 1,
-                            Name = "Jane Doe",
-                            Email = "jane.doe@foo.com",
-                        },
-                        new User
-                        {
-                            Id = 2,
-                            Name = "Joe Doe",
-                            Email = "joe.doe@foo.com",
-                        },
-                                }
-                            );
+                            new User
+                            {
+                                Id = 1,
+                                Name = "Jane Doe",
+                                Email = "jane.doe@foo.com",
+                            },
+                            new User
+                            {
+                                Id = 2,
+                                Name = "Joe Doe",
+                                Email = "joe.doe@foo.com",
+                            },
+                        }
+                    );
         }
 
         private static void PopulateTVSeries(SeriesDbContext context)

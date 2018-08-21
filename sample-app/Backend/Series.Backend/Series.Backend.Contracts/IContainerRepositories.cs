@@ -4,5 +4,6 @@
     {
         ISeriesRepository SeriesRepository { get; }
         IUserSeriesRepository UserSeriesRepository { get; }
+        ISecurityRepository SecurityRepository { get; }
     }
 }

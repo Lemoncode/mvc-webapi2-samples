@@ -10,6 +10,9 @@ namespace Series.Backend.Models
         public DbSet<TVSerie> TVSeries { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<TVSerieUser> TVSerieUser { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserSession> UserSessions { get; set; }
 
         public SeriesDbContext(): base("series"){}
         
@@ -19,6 +22,9 @@ namespace Series.Backend.Models
             modelBuilder.Configurations.Add(new TVSerieConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new TVSerieUserConfiguration());
+            modelBuilder.Configurations.Add(new RoleConfiguration());
+            modelBuilder.Configurations.Add(new UserProfileConfiguration());
+            modelBuilder.Configurations.Add(new UserSessionConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
