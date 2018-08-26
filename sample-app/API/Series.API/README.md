@@ -93,7 +93,7 @@ namespace WebService.Controllers
 ```
 * We can use the tag by action inside of the controller
 
-* What if we wantto use it globally?
+* What if we want to use it globally?
 
 ```C# WebApiConfig.cs
 public static class WebApiConfig
