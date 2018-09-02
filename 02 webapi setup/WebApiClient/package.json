@@ -1,0 +1,18 @@
+{
+  "name": "webapiclient",
+  "version": "1.0.0",
+  "description": "A poject that CORS\tit's working properly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "keywords": [
+    "CORS"
+  ],
+  "author": "Jaime Salas",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^1.9.7"
+  }
+}
