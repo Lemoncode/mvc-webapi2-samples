@@ -274,3 +274,38 @@ namespace Series.API.web
 >Reference: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/authentication-filters
 >Reference: http://www.stefanoricciardi.com/2011/02/04/ninject-mini-tutorial-part-2/
 >Have a watch for implementation: https://stackoverflow.com/questions/6193414/dependency-injection-with-ninject-and-filter-attribute-for-asp-net-mvc/27011327
+
+* An action filter is an attribute that you can apply to a controller action -- or an entire controller -- that modifies the way in which the action is executed.
+* The MVC framework includes several action filters:
+	- OutputCache – This action filter caches the output of a controller action for a specified amount of time.
+	- HandleError – This action filter handles errors raised when a controller action executes.
+	- Authorize – This action filter enables you to restrict access to a particular user or role.
+
+* You also can create your own custom action filters.
+
+#### The different types of filters
+> Reference: https://msdn.microsoft.com/en-us/library/system.web.http.filters(v=vs.118).aspx
+
+* The System.Web.Http.Filters framework supports three different types of filters:
+
+1. Authorization filters – Implements the IAuthorizationFilter attribute.
+2. Action filters – Implements the IActionFilter attribute.
+3. Exception filters – Implements the IExceptionFilter attribute.
+
+* Filters are executed in the order listed above.
+* Authorization filters are used to implement authentication and authorization for controller actions.
+* Action filters contain logic that is executed before and after a controller action executes. 
+* Exception filters are the last type of filter to run. You can use an exception filter to handle errors raised by either your controller actions or controller action results. You also can use exception filters to log errors.
+* If you want to control the order in which filters of the same type are executed then you can set a filter's Order property.
+
+#### The Base ActionFilterAtribute
+> Change for Web API purpose.
+
+* In order to make it easier for you to implement a custom action filter, the ASP.NET MVC framework includes a base ActionFilterAttribute class. 
+* This class implements both the IActionFilter and IResultFilter interfaces and inherits from the Filter class.
+
+* The base ActionFilterAttribute class has the following methods that you can override:
+	- OnActionExecuting – This method is called before a controller action is executed.
+	- OnActionExecuted – This method is called after a controller action is executed.
+	- OnResultExecuting – This method is called before a controller action result is executed.
+	- OnResultExecuted – This method is called after a controller action result is executed. 
