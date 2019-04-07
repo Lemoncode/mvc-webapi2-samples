@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseInit", "DatabaseIni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunners.ContainerRepoistories", "TestRunners.ContainerRepoistories\TestRunners.ContainerRepoistories.csproj", "{C0205D96-73C1-4771-AC96-6D5BA212A072}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRunners.SeriesDbContext", "TestRunners.SeriesDbContext\TestRunners.SeriesDbContext.csproj", "{B718F91A-A4C1-4C94-8A80-36D0649E8857}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{C0205D96-73C1-4771-AC96-6D5BA212A072}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0205D96-73C1-4771-AC96-6D5BA212A072}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0205D96-73C1-4771-AC96-6D5BA212A072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B718F91A-A4C1-4C94-8A80-36D0649E8857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B718F91A-A4C1-4C94-8A80-36D0649E8857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B718F91A-A4C1-4C94-8A80-36D0649E8857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B718F91A-A4C1-4C94-8A80-36D0649E8857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{FBE442E5-8130-43BB-B6A4-31934394B815} = {E702677E-3512-4493-94A1-2C9C13148834}
 		{CCBAA9B6-6CC9-4EE9-84B8-C04132C4DFD1} = {E702677E-3512-4493-94A1-2C9C13148834}
 		{C0205D96-73C1-4771-AC96-6D5BA212A072} = {5AC640DA-BE12-4F01-84EA-3A19FE60F106}
+		{B718F91A-A4C1-4C94-8A80-36D0649E8857} = {5AC640DA-BE12-4F01-84EA-3A19FE60F106}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD8C3ADC-CF42-472B-AD9D-7261BD1D3030}

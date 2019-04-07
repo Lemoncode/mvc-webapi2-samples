@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIAdvancedScenarios.API", "DIAdvancedScenarios.API\DIAdvancedScenarios.API.csproj", "{2A156BA2-99A2-4911-B779-88D10C6A17FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A156BA2-99A2-4911-B779-88D10C6A17FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A156BA2-99A2-4911-B779-88D10C6A17FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A156BA2-99A2-4911-B779-88D10C6A17FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A156BA2-99A2-4911-B779-88D10C6A17FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C12BAFCB-6BF7-433A-8345-0B8055AAFF61}
+	EndGlobalSection
+EndGlobal

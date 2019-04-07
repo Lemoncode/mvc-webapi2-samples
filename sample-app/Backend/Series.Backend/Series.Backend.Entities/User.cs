@@ -12,6 +12,7 @@ namespace Series.Backend.Entities
 
         // Properties
         public string Name { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
     }
 }

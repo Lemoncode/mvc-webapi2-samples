@@ -117,13 +117,15 @@ namespace DatabaseInit
                             new User
                             {
                                 Id = 1,
-                                Name = "Jane Doe",
+                                Name = "Jane",
+                                LastName = "Doe",
                                 Email = "jane.doe@foo.com",
                             },
                             new User
                             {
                                 Id = 2,
-                                Name = "Joe Doe",
+                                Name = "Joe",
+                                LastName = "Doe",
                                 Email = "joe.doe@foo.com",
                             },
                         }
